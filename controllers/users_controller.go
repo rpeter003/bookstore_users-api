@@ -40,7 +40,3 @@ func GetUser(c *gin.Context) {
 		c.JSON(http.StatusOK, user)
 	}
 }
-
-// func SearchUser(c *gin.Context) {
-// 	c.String(http.StatusNotImplemented, "implement me!")
-// }
