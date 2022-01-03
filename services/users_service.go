@@ -1,8 +1,8 @@
 package services
 
 import (
-	"bookstore/bookstore_users-api/domain/users"
-	"bookstore/bookstore_users-api/utils/errors"
+	"github.com/rpeter003/bookstore_users-api/domain/users"
+	"github.com/rpeter003/bookstore_users-api/utils/errors"
 )
 
 func GetUser(userId int64) (*users.User, *errors.RestErr) {

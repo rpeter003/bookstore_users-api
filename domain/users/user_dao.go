@@ -1,9 +1,9 @@
 package users
 
 import (
-	"bookstore/bookstore_users-api/datasources/mysql/users_db"
-	"bookstore/bookstore_users-api/utils/date_utils"
-	"bookstore/bookstore_users-api/utils/errors"
+	"github.com/repter003/bookstore_users-api/utils/date_utils"
+	"github.com/rpeter003/bookstore_users-api/datasources/mysql/users_db"
+	"github.com/rpeter003/bookstore_users-api/utils/errors"
 
 	"fmt"
 )

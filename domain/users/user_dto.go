@@ -1,8 +1,9 @@
 package users
 
 import (
-	"bookstore/bookstore_users-api/utils/errors"
 	"strings"
+
+	"github.com/rpeter003/bookstore_users-api/utils/errors"
 )
 
 type User struct {

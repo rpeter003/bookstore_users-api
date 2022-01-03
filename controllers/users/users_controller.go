@@ -1,11 +1,12 @@
 package users
 
 import (
-	"bookstore/bookstore_users-api/domain/users"
-	"bookstore/bookstore_users-api/services"
-	"bookstore/bookstore_users-api/utils/errors"
 	"net/http"
 	"strconv"
+
+	"github.com/rpeter003/bookstore_users-api/domain/users"
+	"github.com/rpeter003/bookstore_users-api/services"
+	"github.com/rpeter003/bookstore_users-api/utils/errors"
 
 	"github.com/gin-gonic/gin"
 )
@@ -36,7 +37,7 @@ func GetUser(c *gin.Context) {
 	user, getErr := services.GetUser(userID)
 	if getErr != nil {
 		c.JSON(getErr.Status, getErr)
-		return
-		c.JSON(http.StatusOK, user)
 	}
+	c.JSON(http.StatusOK, user)
+
 }
