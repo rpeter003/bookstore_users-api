@@ -1,11 +1,10 @@
-module bookstore
+module github.com/rpeter003/bookstore_users-api
 
 go 1.17
 
 require (
 	github.com/gin-gonic/gin v1.7.7
 	github.com/go-sql-driver/mysql v1.6.0
-	github.com/rpeter003/bookstore_users-api v0.0.0-20211229194224-2d71fdb2e6a5
 )
 
 require (

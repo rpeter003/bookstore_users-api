@@ -1,15 +1,17 @@
 package users
 
 import (
-	"github.com/repter003/bookstore_users-api/utils/date_utils"
-	"github.com/rpeter003/bookstore_users-api/datasources/mysql/users_db"
+	"github.com/rpeter003/bookstore_users-api/datasources/userdb"
+	"github.com/rpeter003/bookstore_users-api/utils/date_utils"
 	"github.com/rpeter003/bookstore_users-api/utils/errors"
 
 	"fmt"
+
+	_ "github.com/go-sql-driver/mysql"
 )
 
 const (
-	queryInstertUser = "INSERT INTO users(first_name, last_name, email, date_created) VALUES(?, ?, ?, ?);"
+	queryInsertUser = "INSERT INTO users(first_name, last_name, email, date_created) VALUES(?, ?, ?, ?);"
 )
 
 var (
@@ -17,7 +19,7 @@ var (
 )
 
 func (user *User) Get() *errors.RestErr {
-	if err := users_db.Client.Ping(); err != nil {
+	if err := userdb.Client.Ping(); err != nil {
 		panic(err)
 	}
 	result := usersDB[user.Id]
@@ -28,20 +30,20 @@ func (user *User) Get() *errors.RestErr {
 	user.FirstName = result.FirstName
 	user.LastName = result.LastName
 	user.Email = result.Email
-	user.DateCreted = result.DateCreted
+	user.DateCreated = result.DateCreated
 	return nil
 
 }
 func (user *User) Save() *errors.RestErr {
-	stmt, err := users_db.Client.Prepare(queryInstertUser)
+	stmt, err := userdb.Client.Prepare(queryInsertUser)
 	if err != nil {
 		return errors.NewInternalServerError(err.Error())
 	}
 	defer stmt.Close()
 
-	user.DateCreted = date_utils.GetNowString()
+	user.DateCreated = date_utils.GetNowString()
 
-	insertResult, err := stmt.Exec(user.FirstName, user.LastName, user.Email, user.DateCreted)
+	insertResult, err := stmt.Exec(user.FirstName, user.LastName, user.Email, user.DateCreated)
 	if err != nil {
 		return errors.NewInternalServerError(fmt.Sprintf("error when trying to save user: %s", err.Error()))
 	}
